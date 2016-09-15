@@ -27,10 +27,10 @@ if [ -f "${MOUNT}/.sandbox" ] ; then
   if grep -Fxq strict "${MOUNT}/.sandbox"
   then
     loopmounter "${MOUNT}"
-    firejail --appimage --private "${APPIMAGE}"
+    firejail --noprofile --appimage --private "${APPIMAGE}"
   else
     loopmounter "${MOUNT}"
-    firejail --appimage "${APPIMAGE}"
+    firejail --noprofile --appimage "${APPIMAGE}"
   fi
 else
   loopmounter "${MOUNT}"
