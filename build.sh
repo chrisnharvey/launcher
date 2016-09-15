@@ -14,7 +14,7 @@ wget https://github.com/netblue30/firejail/archive/0.9.42.tar.gz
 tar xf 0.9.42.tar.gz
 cd firejail-0.9.42
 
-./configure --prefix=/mnt/appimager/build/usr
+./configure --disable-globalcfg --prefix=/mnt/appimager/build/usr
 make
 make install
 
