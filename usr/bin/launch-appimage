@@ -1,0 +1,53 @@
+#!/bin/bash
+
+export APPIMAGE="$1"
+shift
+
+if [ -z "$APPIMAGE" ] ; then
+  echo Usage: $0 Some.AppImage
+  exit 1
+fi
+
+function cleanup {
+  if [ -d "${MOUNT}" ] ; then
+    rm  -rf "${MOUNT}"
+  fi
+}
+
+trap cleanup EXIT
+
+MOUNT=$(mktemp -d "/tmp/.mountXXXX")
+export APPDIR="${MOUNT}"
+
+echo "${MOUNT}"
+
+loopmounter "${APPIMAGE}" "${MOUNT}"
+
+if [ -f "${MOUNT}/.sandbox" ] ; then
+  if grep -Fxq strict "${MOUNT}/.sandbox"
+  then
+    loopmounter "${MOUNT}"
+    firejail --appimage --private "${APPIMAGE}"
+  else
+    loopmounter "${MOUNT}"
+    firejail --appimage "${APPIMAGE}"
+  fi
+else
+  loopmounter "${MOUNT}"
+
+  if [ -x "${APPIMAGE}" ] ; then
+    "${APPIMAGE}" "$@"
+  else
+    zenity --question --title="AppImage" --text="This application could potentially harm your computer, are you sure you want to run it?"
+
+    case $? in
+      1) exit
+    ;;
+    esac
+
+    chmod a+x "${APPIMAGE}"
+
+    "${APPIMAGE}" "$@"  
+  fi
+fi
+
