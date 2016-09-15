@@ -1,0 +1,6 @@
+name: AppImage Launcher
+description: Simple launcher to make it easier to download and run AppImages.
+
+build: ./build.sh
+
+base: 12.04
