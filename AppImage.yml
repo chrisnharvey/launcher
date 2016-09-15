@@ -1,6 +1,15 @@
 name: AppImage Launcher
 description: Simple launcher to make it easier to download and run AppImages.
 
+features:
+    - desktop
+    - updates
+
 build: ./build.sh
 
 base: 12.04
+
+require_build:
+    - make
+    - wget
+    - gcc
