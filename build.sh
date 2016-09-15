@@ -1,11 +1,10 @@
 #!/bin/bash
 
 mkdir -p /mnt/appimager/build
+cp -R /mnt/appimager/usr /mnt/appimager/build
 
 gcc loopmounter.c -o /mnt/appimager/build/usr/bin/loopmounter
 strip /mnt/appimager/build/usr/bin/loopmounter
-
-cp -R usr /mnt/appimager/build
 
 chown root:root /mnt/appimager/build/usr/bin/loopmounter
 chmod 4755 /mnt/appimager/build/usr/bin/loopmounter
