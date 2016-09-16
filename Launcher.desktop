@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=AppImage Launcher
+Exec=launcher.wrapper
+Icon=Icon.png
+Terminal=false
+Type=Application
+Categories=Development;
+Comment=Simple launcher to make it easier to download and run AppImages.
+MimeType=application/x-iso9660-appimage;
+StartupNotify=true
