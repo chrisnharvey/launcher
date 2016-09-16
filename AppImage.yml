@@ -1,9 +1,7 @@
 name: AppImage Launcher
 description: Simple launcher to make it easier to download and run AppImages.
 
-features:
-    - desktop
-    - updates
+integration: usr/bin/launcher
 
 build: ./build.sh
 
