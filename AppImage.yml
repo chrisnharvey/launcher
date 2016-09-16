@@ -7,6 +7,9 @@ build: ./build.sh
 
 base: 12.04
 
+require:
+    - fuseiso
+
 require_build:
     - make
     - wget
