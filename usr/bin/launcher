@@ -4,7 +4,7 @@ export APPIMAGE="$1"
 shift
 
 if [ -z "$APPIMAGE" ] ; then
-  notify-send "AppImage Launcher" "AppImage Launcher makes it easy to run AppImages"
+  notify-send "AppImage Launcher" "AppImage Launcher is setup."
   echo Usage: $0 Some.AppImage
   exit 1
 fi
