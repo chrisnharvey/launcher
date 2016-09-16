@@ -4,6 +4,7 @@ export APPIMAGE="$1"
 shift
 
 if [ -z "$APPIMAGE" ] ; then
+  notify-send "AppImage Launcher" "AppImage Launcher makes it easy to run AppImages"
   echo Usage: $0 Some.AppImage
   exit 1
 fi
@@ -21,19 +22,19 @@ export APPDIR="${MOUNT}"
 
 echo "${MOUNT}"
 
-loopmounter "${APPIMAGE}" "${MOUNT}"
+fuseiso "${APPIMAGE}" "${MOUNT}"
 
 if [ -f "${MOUNT}/.sandbox" ] ; then
   if grep -Fxq strict "${MOUNT}/.sandbox"
   then
-    loopmounter "${MOUNT}"
+    fusermount -u "${MOUNT}"
     firejail --noprofile --appimage --private "${APPIMAGE}"
   else
-    loopmounter "${MOUNT}"
+    fusermount -u "${MOUNT}"
     firejail --noprofile --appimage "${APPIMAGE}"
   fi
 else
-  loopmounter "${MOUNT}"
+  fusermount -u "${MOUNT}"
 
   if [ -x "${APPIMAGE}" ] ; then
     "${APPIMAGE}" "$@"
