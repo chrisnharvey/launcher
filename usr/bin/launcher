@@ -39,7 +39,7 @@ else
   if [ -x "${APPIMAGE}" ] ; then
     "${APPIMAGE}" "$@"
   else
-    zenity --question --title="AppImage" --text="This application could potentially harm your computer, are you sure you want to run it?"
+    zenity --question --title="AppImage Launcher" --text="This application could potentially harm your computer, are you sure you want to run it?"
 
     case $? in
       1) exit
