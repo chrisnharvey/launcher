@@ -1,5 +1,7 @@
 # AppImage Launcher
 
+Copyright (c) 2016 Nimbusoft Ltd
+
 Simple launcher to make it easier to download and run AppImages.
 
 Icon made by [Pixel Buddha](http://www.flaticon.com/authors/pixel-buddha "Pixel Buddha") from [www.flaticon.com](http://www.flaticon.com "Flaticon") is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/ "Creative Commons BY 3.0")
