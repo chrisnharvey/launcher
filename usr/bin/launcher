@@ -24,15 +24,9 @@ echo "${MOUNT}"
 
 fuseiso "${APPIMAGE}" "${MOUNT}"
 
-if [ -f "${MOUNT}/.sandbox" ] ; then
-  if grep -Fxq strict "${MOUNT}/.sandbox"
-  then
-    fusermount -u "${MOUNT}"
-    firejail --noprofile --appimage --private "${APPIMAGE}"
-  else
-    fusermount -u "${MOUNT}"
-    firejail --noprofile --appimage "${APPIMAGE}"
-  fi
+if [ -f "${MOUNT}/firejail.profile" ] ; then
+  fusermount -u "${MOUNT}"
+  firejail --profile="${MOUNT}/firejail.profile" --appimage "${APPIMAGE}"
 else
   fusermount -u "${MOUNT}"
 
